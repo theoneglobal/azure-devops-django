@@ -1,0 +1,18 @@
+trigger:
+  - main
+variables:
+  imageName: 'azuredjango'
+  imageVersion: '1.0.0'
+  acrName: 'myacr.azurecr.io'
+  acrServiceConnection: 'acr-connection'
+steps:
+- task: Docker@2
+  displayName: 'Build and Push to ACR'
+  inputs:
+    containerRegistry: '$(acrServiceConnection)'
+    repository: '$(imageName)'
+    command: 'buildAndPush'
+    Dockerfile: 'Dockerfile'
+    tags: |
+      $(imageVersion)
+      latest
