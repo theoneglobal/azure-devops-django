@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "azuredjango"
+version = "0.1.0"
+description = "Django Application for Azure DevOps Deployment"
+authors = ["user@example.com"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.13"
+django = "^4.2"
+psycopg2-binary = "^2.9"
+djangorestframework = "^3.14"
+gunicorn = "^20.1"
+whitenoise = "^6.5"
+django-environ = "^0.10"
+django-health-check = "^3.18.3"
+opencensus-ext-azure = "^1.1.14"
+django-storages = "^1.14"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3"
+django-stubs = "^1.13"
+pytest-django = "^4.5"
+ruff = "^0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

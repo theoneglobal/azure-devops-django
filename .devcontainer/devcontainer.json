@@ -1,0 +1,40 @@
+{
+  "name": "AzureDjango Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.13"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "batisteo.vscode-django",
+        "ms-vscode-remote.remote-containers",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/home/vscode/.local/bin/poetry",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black"
+      }
+    }
+  },
+  "postCreateCommand": "poetry install",
+  "remoteUser": "vscode",
+  "portsAttributes": {
+    "8000": {
+      "label": "Django Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "forwardPorts": [8000]
+}

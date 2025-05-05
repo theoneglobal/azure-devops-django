@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "main"
+    registries:
+      - pypi-alternate
+registries:
+  pypi-alternate:
+    type: "python-index"
+    url: "https://pypi.mirrors.ustc.edu.cn/simple"
