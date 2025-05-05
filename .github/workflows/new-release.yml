@@ -1,0 +1,30 @@
+name: Create Release on Merge to Main
+
+on:
+  push:
+    branches:
+      - main  # Runs when changes are merged into the main branch
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Tag
+        id: tag
+        run: |
+          TAG_NAME="v$(date +'%Y.%m.%d-%H%M')"
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ env.TAG_NAME }}
+          name: "Release ${{ env.TAG_NAME }}"
+          body: "New release created from the latest merge into main."
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
